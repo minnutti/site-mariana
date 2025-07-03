@@ -79,23 +79,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// // Efeito de parallax suave no hero
-// document.addEventListener("DOMContentLoaded", function () {
-//   const hero = document.querySelector(".hero");
-//   const heroImage = document.querySelector(".hero-image img");
-
-//   if (hero && heroImage) {
-//     window.addEventListener("scroll", function () {
-//       const scrolled = window.pageYOffset;
-//       const rate = scrolled * -0.5;
-
-//       if (scrolled < hero.offsetHeight) {
-//         heroImage.style.transform = `translateY(${rate}px)`;
-//       }
-//     });
-//   }
-// });
-
 // Animação de entrada dos cards
 document.addEventListener("DOMContentLoaded", function () {
   const observerOptions = {
@@ -139,54 +122,25 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   
-
-
-  //botão whats
-  /*
   const btn = document.getElementById("floatingBtn");
   const footer = document.querySelector("footer");
-
-  window.addEventListener("scroll", () => {
-    const scrollY = window.scrollY || window.pageYOffset;
-    const footer = document.querySelector("footer");
-    const footerTop = footer.offsetTop;
-    const windowHeight = window.innerHeight;
-
-    // Mostrar botão ao rolar 300px
-    if (scrollY > 300) {
-      btn.classList.add("show");
-    } else {
-      btn.classList.remove("show");
-    }
-
-    // "Repousar" no footer
-    /*
-    const footerHeight = footer.offsetHeight;
-    const overlap = scrollY + windowHeight - footerTop;
-
-    if (scrollY + windowHeight > footerTop + 20) {
-      btn.style.position = "fixed";
-      btn.style.bottom = `${overlap + 20}px`;
-    } else {
-      btn.style.position = "fixed";
-      btn.style.bottom = "2rem";
-    }
-    */
-  const btn = document.getElementById("floatingBtn");
-  const footer = document.querySelector("footer");
+  const logo = document.querySelector(".logo");
 
   function updateButtonPosition() {
     const scrollY = window.scrollY || window.pageYOffset;
     const windowHeight = window.innerHeight;
     const footerTop = footer.getBoundingClientRect().top + scrollY;
-    const btnHeight = btn.offsetHeight;
     const distanceFromBottom = scrollY + windowHeight - footerTop;
 
-    // Mostrar botão após 300px de scroll
+    const isMobile = window.innerWidth <= 768;
+
+    // Mostrar botão e trocar logo após 300px de scroll
     if (scrollY > 300) {
       btn.classList.add("show");
+      if (isMobile) logo.classList.add("scrolled");
     } else {
       btn.classList.remove("show");
+      logo.classList.remove("scrolled");
     }
 
     // Se está alcançando o footer, reposiciona
@@ -210,17 +164,17 @@ document.addEventListener("DOMContentLoaded", function () {
     {
       image: "./images/image1.jpg",
       text: "Ambiente acolhedor, seguro e personalizado para você",
-      buttonLink: "#contato",
+      buttonLink: "https://wa.me/5513991110945",
     },
     {
       image: "./images/image2.jpg",
       text: "Acompanhamento psicológico individual",
-      buttonLink: "#psicologia",
+      buttonLink: "https://wa.me/5513991110945",
     },
     {
       image: "./images/image3.jpg",
       text: "Cuidando bem de quem amamos",
-      buttonLink: "#terapia",
+      buttonLink: "https://wa.me/5513991110945",
     },
   ];
 
@@ -263,5 +217,34 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener(event, () => {
       lastInteraction = Date.now();
     });
+  });
+
+  const modal = document.getElementById("info-modal");
+  const modalText = document.getElementById("modal-text");
+  const closeBtn = document.querySelector(".close-btn");
+
+  const contentMap = {
+    individual_exp: "Indicada para adolescentes e adultos. A terapia individual oferece suporte aos indivíduos durante períodos difíceis, ensinando-os a lidar com questões emocionais, angústias, falta de motivação, baixa autoestima e desilusões. Seu objetivo central é proporcionar ao paciente uma nova forma de sentir e pensar, capacitando-o a superar as adversidades da sua vida.",
+    parental_exp: "Orientação parental e familiar é um processo de apoio psicológico que ajuda pais, mães e responsáveis a lidarem com os desafios da criação dos filhos, promovendo relações mais saudáveis e estratégias educativas mais eficazes no ambiente familiar. Também oferece suporte no cuidado com idosos e pessoas com deficiência, auxiliando no enfrentamento das demandas do dia a dia com mais equilíbrio, fortalecendo vínculos e promovendo o bem-estar de todos.",
+    online_exp: "O acompanhamento psicológico online é uma forma prática, segura e eficaz de cuidar da saúde mental. Ideal para quem busca flexibilidade de horários e conforto, essa modalidade permite que o paciente realize suas sessões de qualquer lugar, sem abrir mão da qualidade do atendimento. Realizado com ética, sigilo e profissionalismo, o processo terapêutico online segue as diretrizes do Conselho Federal de Psicologia e oferece um espaço acolhedor para autoconhecimento, escuta qualificada e desenvolvimento emocional."
+  };
+
+  document.querySelectorAll(".info-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const key = btn.getAttribute("data-info");
+      modalText.textContent = contentMap[key] || "Texto não encontrado.";
+      modal.classList.remove("hidden");
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+
+  // Fecha ao clicar fora do modal-content
+  modal.addEventListener("click", e => {
+    if (e.target === modal) {
+      modal.classList.add("hidden");
+    }
   });
 });
