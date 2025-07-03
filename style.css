@@ -25,6 +25,7 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  /* scroll-padding-top: 80px; */
 }
 
 /* Ajustes para o offset do header fixo */
@@ -37,6 +38,13 @@ body {
   line-height: 1.6;
   color: var(--color-text);
   overflow-x: hidden;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
 }
 
 .container {
@@ -185,6 +193,7 @@ body {
   display: none;
   flex-direction: column;
   cursor: pointer;
+  right: 1rem;
   gap: 4px;
 }
 
@@ -199,6 +208,7 @@ body {
 .hero {
   position: relative;
   height: 100vh;
+  width: 100%;
   background: linear-gradient(
     135deg,
     rgba(255, 250, 235, 0.8),
@@ -244,6 +254,7 @@ body {
   color: var(--color-destaques);
   z-index: 2;
   max-width: 800px;
+  width: 100%;
   padding: 0 20px;
   margin: 0 auto;
   gap: 5rem;
@@ -420,6 +431,7 @@ body {
 
 .image-container {
   position: relative;
+  min-height: 300px;
 }
 
 .image-container img {

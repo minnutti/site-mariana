@@ -6,20 +6,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const question = item.querySelector(".faq-question");
 
     question.addEventListener("click", function () {
-      // Fecha todos os outros itens
       faqItems.forEach((otherItem) => {
         if (otherItem !== item) {
           otherItem.classList.remove("active");
         }
       });
 
-      // Toggle do item atual
       item.classList.toggle("active");
     });
   });
 });
 
-// Navegação suave para as seções
+// Navegação suave para as seções (corrigida para esperar imagens carregarem)
 document.addEventListener("DOMContentLoaded", function () {
   const navLinks = document.querySelectorAll('.nav a[href^="#"]');
 
@@ -29,20 +27,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const targetId = this.getAttribute("href");
       const targetSection = document.querySelector(targetId);
+      const headerHeight = document.querySelector(".header").offsetHeight;
 
-      if (targetSection) {
-        const headerHeight = document.querySelector(".header").offsetHeight;
+      const scrollToTarget = () => {
         const targetPosition = targetSection.offsetTop - headerHeight;
-
         window.scrollTo({
           top: targetPosition,
           behavior: "smooth",
         });
+      };
+
+      const img = targetSection.querySelector("img");
+      if (img && !img.complete) {
+        img.addEventListener("load", scrollToTarget, { once: true });
+      } else {
+        scrollToTarget();
       }
 
-      // Fecha o menu mobile se estiver aberto
-      const nav = document.querySelector(".nav");
-      nav.classList.remove("active");
+      document.querySelector(".nav").classList.remove("active");
     });
   });
 });
@@ -56,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
     nav.classList.toggle("active");
   });
 
-  // Fecha o menu ao clicar fora dele
   document.addEventListener("click", function (e) {
     if (!nav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
       nav.classList.remove("active");
@@ -70,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (btnAgendar) {
     btnAgendar.addEventListener("click", function () {
-      // Simula um scroll para o topo (onde está o botão de contato)
       window.scrollTo({
         top: 0,
         behavior: "smooth",
@@ -95,7 +95,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }, observerOptions);
 
-  // Observa os cards
   const cards = document.querySelectorAll(".card");
   cards.forEach((card) => {
     card.style.opacity = "0";
@@ -104,7 +103,6 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(card);
   });
 
-  // Observa a seção da psicóloga
   const textContent = document.querySelector(".text-content");
   if (textContent) {
     textContent.style.opacity = "0";
@@ -121,7 +119,6 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(imageContainer);
   }
 
-  
   const btn = document.getElementById("floatingBtn");
   const footer = document.querySelector("footer");
   const logo = document.querySelector(".logo");
@@ -134,7 +131,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const isMobile = window.innerWidth <= 768;
 
-    // Mostrar botão e trocar logo após 300px de scroll
     if (scrollY > 300) {
       btn.classList.add("show");
       if (isMobile) logo.classList.add("scrolled");
@@ -143,10 +139,9 @@ document.addEventListener("DOMContentLoaded", function () {
       logo.classList.remove("scrolled");
     }
 
-    // Se está alcançando o footer, reposiciona
     if (distanceFromBottom > 0) {
       btn.style.position = "absolute";
-      btn.style.bottom = `${footer.offsetHeight + 10}px`; // Ajuste fino aqui se quiser
+      btn.style.bottom = `${footer.offsetHeight + 10}px`;
     } else {
       btn.style.position = "fixed";
       btn.style.bottom = "2rem";
@@ -154,9 +149,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   window.addEventListener("scroll", updateButtonPosition);
-  window.addEventListener("resize", updateButtonPosition); // importante se o usuário redimensionar
-
-  updateButtonPosition(); // Executa no carregamento
+  window.addEventListener("resize", updateButtonPosition);
+  updateButtonPosition();
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -212,7 +206,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }, 5000);
 
-  // Detecta interação
   ["mousemove", "scroll", "keydown", "click"].forEach((event) => {
     window.addEventListener(event, () => {
       lastInteraction = Date.now();
@@ -241,7 +234,6 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.classList.add("hidden");
   });
 
-  // Fecha ao clicar fora do modal-content
   modal.addEventListener("click", e => {
     if (e.target === modal) {
       modal.classList.add("hidden");
