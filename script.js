@@ -162,12 +162,12 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       image: "./images/image2.jpg",
-      text: "Acompanhamento psicológico individual",
+      text: "Acompanhamento Psicológico Individual",
       buttonLink: "https://wa.me/5513991110945",
     },
     {
       image: "./images/image3.jpg",
-      text: "Cuidando bem de quem amamos",
+      text: "Orientação Parental e Familiar",
       buttonLink: "https://wa.me/5513991110945",
     },
   ];
