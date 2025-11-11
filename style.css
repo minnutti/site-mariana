@@ -263,7 +263,7 @@ video {
   gap: 5rem;
 }
 
-.hero-content h2 {
+.hero-content h1 {
   font-size: 3rem;
   margin-bottom: 1.5rem;
   transition: opacity 0.5s ease;
@@ -662,8 +662,9 @@ a.btn-agendar {
 
 .minnutti-logo svg {
   height: 30px;
-  filter: invert(100%) sepia(100%) saturate(100%) hue-rotate(156deg)
-    brightness(0%) contrast(100%) opacity(15%);
+  /* filter: invert(100%) sepia(100%) saturate(100%) hue-rotate(156deg)
+    brightness(0%) contrast(100%) opacity(15%); */
+  filter: invert(100%) brightness(200%) opacity(20%);
 }
 
 footer a:hover svg {

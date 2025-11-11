@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   const heroImg = document.querySelector(".hero-image img");
-  const heroText = document.querySelector(".hero-content h2");
+  const heroText = document.querySelector(".hero-content h1");
   const heroBtn = document.querySelector(".hero-btn");
 
   let currentSlide = 0;
@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   setInterval(() => {
     const now = Date.now();
-    if (now - lastInteraction > 5000) {
+    if (now - lastInteraction > 3000) {
       currentSlide = (currentSlide + 1) % slides.length;
       showSlide(currentSlide);
     }
@@ -217,15 +217,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const closeBtn = document.querySelector(".close-btn");
 
   const contentMap = {
-    individual_exp: "Indicada para adolescentes e adultos. A terapia individual oferece suporte aos indivíduos durante períodos difíceis, ensinando-os a lidar com questões emocionais, angústias, falta de motivação, baixa autoestima e desilusões. Seu objetivo central é proporcionar ao paciente uma nova forma de sentir e pensar, capacitando-o a superar as adversidades da sua vida.",
-    parental_exp: "Orientação parental e familiar é um processo de apoio psicológico que ajuda pais, mães e responsáveis a lidarem com os desafios da criação dos filhos, promovendo relações mais saudáveis e estratégias educativas mais eficazes no ambiente familiar. Também oferece suporte no cuidado com idosos e pessoas com deficiência, auxiliando no enfrentamento das demandas do dia a dia com mais equilíbrio, fortalecendo vínculos e promovendo o bem-estar de todos.",
-    online_exp: "O acompanhamento psicológico online é uma forma prática, segura e eficaz de cuidar da saúde mental. Ideal para quem busca flexibilidade de horários e conforto, essa modalidade permite que o paciente realize suas sessões de qualquer lugar, sem abrir mão da qualidade do atendimento. Realizado com ética, sigilo e profissionalismo, o processo terapêutico online segue as diretrizes do Conselho Federal de Psicologia e oferece um espaço acolhedor para autoconhecimento, escuta qualificada e desenvolvimento emocional."
+    individual_exp: "Indicada para adolescentes e adultos. A <strong>terapia individual</strong> oferece suporte aos indivíduos durante períodos difíceis, ensinando-os a lidar com <strong>questões emocionais, angústias, falta de motivação, baixa autoestima</strong> e <strong>desilusões</strong>. Seu objetivo central é proporcionar ao paciente uma nova forma de <strong>sentir e pensar</strong>, capacitando-o a superar as adversidades da sua vida.",
+    parental_exp: "Orientação parental e familiar é um processo de <strong>apoio psicológico</strong> que ajuda pais, mães e responsáveis a lidarem com os desafios da <strong>criação dos filhos</strong>, promovendo relações mais saudáveis e estratégias educativas mais eficazes no ambiente familiar. Também oferece suporte no cuidado com <strong>idosos</strong> e <strong>pessoas com deficiência</strong>, auxiliando no enfrentamento das demandas do dia a dia com mais equilíbrio, fortalecendo vínculos e promovendo o bem-estar de todos.",
+    online_exp: "O <strong>acompanhamento psicológico online</strong> é uma forma prática, segura e eficaz de cuidar da <strong>saúde mental</strong>. Ideal para quem busca flexibilidade de horários e conforto, essa modalidade permite que o paciente realize suas sessões de <strong>qualquer lugar</strong>, sem abrir mão da qualidade do atendimento. Realizado com <strong>ética, sigilo e profissionalismo</strong>, o processo terapêutico online segue as diretrizes do Conselho Federal de Psicologia e oferece um espaço acolhedor para autoconhecimento, escuta qualificada e desenvolvimento emocional."
   };
 
   document.querySelectorAll(".info-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const key = btn.getAttribute("data-info");
-      modalText.textContent = contentMap[key] || "Texto não encontrado.";
+      modalText.innerHTML = contentMap[key] || "Texto não encontrado.";
       modal.classList.remove("hidden");
     });
   });
