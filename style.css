@@ -22,7 +22,7 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; 
 }
 
 /* Smooth scrolling */
@@ -707,6 +707,33 @@ footer a:hover svg {
   position: relative;
 }
 
+/* Responsividade intermediária */
+/* TELAS MÉDIAS: 769px até 1028px */
+@media (min-width: 769px) and (max-width: 1030px) {
+  .logo .logo-default {
+    opacity: 0;
+  }
+
+  .logo .logo-scroll {
+    opacity: 1;
+  } 
+
+  .logo{
+    margin-right: -30px;
+    margin-left: -50px;
+  }
+
+  .nav{
+    flex: 0 1 80%;
+    font-size: 10pt;
+    margin-left: -40px;
+  }
+
+  .footer-content .logo{
+    margin-left: 30px;
+  }
+
+}
 /* Responsividade Mobile */
 @media (max-width: 768px) {
   .minnuti-logo {
@@ -743,16 +770,6 @@ footer a:hover svg {
     opacity: 95%;
     width: auto;
     margin: 0 auto;
-  }
-
-  
-
-  .logo.scrolled .logo-default {
-    opacity: 0;
-  }
-
-  .logo.scrolled .logo-scroll {
-    opacity: 1;
   }
 
   .nav {
