@@ -366,6 +366,14 @@ video {
   filter: var(--filter-destaques);
 }
 
+.btn-info {
+  background-color: var(--color-destaques);
+  color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 24px;
+  transition: all 0.3s ease;
+}
+
 .info-btn:hover {
   transform: scale(1.1);
 }
