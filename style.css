@@ -339,12 +339,12 @@ video {
 .card img {
   object-fit: cover;
   max-width: 300px;
-  width: 100%;
+  width: 75%;
   height: auto;
   margin: 0 auto;
   display: block;
   border-radius: 4px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+  /*box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1); */
 }
 
 .info-btn {
@@ -512,6 +512,12 @@ a.btn-agendar {
 .faq-container {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.faq-container a{
+  text-decoration:underline;
+  color: var(--color-destaques);
+  /* font-weight: 500; */
 }
 
 .faq-item {
@@ -710,6 +716,11 @@ footer a:hover svg {
 /* Responsividade intermediária */
 /* TELAS MÉDIAS: 769px até 1028px */
 @media (min-width: 769px) and (max-width: 1030px) {
+  .hero-content h1 {
+    font-size:1.8rem;
+    margin-bottom: 1.5rem;
+    transition: opacity 0.5s ease;
+  }
   .logo .logo-default {
     opacity: 0;
   }
@@ -725,7 +736,7 @@ footer a:hover svg {
 
   .nav{
     flex: 0 1 80%;
-    font-size: 10pt;
+    font-size: 8.9pt;
     margin-left: -40px;
   }
 
@@ -772,7 +783,7 @@ footer a:hover svg {
     display: flex;
     justify-content: center;
     position: relative;
-    min-height: 48px;
+    min-height: 24px;
     opacity: 95%;
     width: auto;
     margin: 0 auto;
@@ -811,7 +822,7 @@ footer a:hover svg {
     padding: 1rem;
   }
 
-  .hero-content h2 {
+  .hero-content h1 {
     font-size: 2rem;
     letter-spacing: 1px;
   }
@@ -876,12 +887,16 @@ footer a:hover svg {
 }
 
 @media (max-width: 480px) {
+    
+  .logo {
+      min-height: 12px;
+  }
   .container {
     padding: 0 15px;
   }
 
-  .hero-content h2 {
-    font-size: 1.5rem;
+  .hero-content h1 {
+    font-size: 1rem;
   }
 
   .card,

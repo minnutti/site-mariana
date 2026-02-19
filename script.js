@@ -1,24 +1,7 @@
-// Funcionalidade do FAQ
 document.addEventListener("DOMContentLoaded", function () {
-  const faqItems = document.querySelectorAll(".faq-item");
-
-  faqItems.forEach((item) => {
-    const question = item.querySelector(".faq-question");
-
-    question.addEventListener("click", function () {
-      faqItems.forEach((otherItem) => {
-        if (otherItem !== item) {
-          otherItem.classList.remove("active");
-        }
-      });
-
-      item.classList.toggle("active");
-    });
-  });
-});
-
-// Navegação suave para as seções (corrigida para esperar imagens carregarem)
-document.addEventListener("DOMContentLoaded", function () {
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     // Navegação suave para as seções (corrigida para esperar imagens carregarem)
   const navLinks = document.querySelectorAll('.nav a[href^="#"]');
 
   navLinks.forEach((link) => {
@@ -47,10 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelector(".nav").classList.remove("active");
     });
   });
-});
-
-// Menu mobile toggle
-document.addEventListener("DOMContentLoaded", function () {
+  
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Menu mobile toggle
   const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
   const nav = document.querySelector(".nav");
 
@@ -63,10 +46,10 @@ document.addEventListener("DOMContentLoaded", function () {
       nav.classList.remove("active");
     }
   });
-});
-
-// Botão "Agende sua consulta" - scroll para contato
-document.addEventListener("DOMContentLoaded", function () {
+  
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Botão "Agende sua consulta" - scroll para contato
   const btnAgendar = document.querySelector(".btn-agendar");
 
   if (btnAgendar) {
@@ -77,10 +60,150 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
-});
+  
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Slide no hero
+  const slides = [
+    {
+      image: "./images/image4.jpg",
+      text: "Redefina sua forma de viver por meio da TCC e desenvolva mais equilíbrio, clareza emocional e qualidade de vida",
+      buttonText: "Quero começar minha jornada",
+      buttonLink: "https://wa.me/5513991110945",
+    },
+    {
+      image: "./images/image2.jpg",
+      text: "Atendimento em Terapia Cognitivo-Comportamental, abordagem científica reconhecida pela eficácia no cuidado com a saúde emocional",
+      buttonText: "Agende sua consulta",
+      buttonLink: "https://wa.me/5513991110945",
+    },
+    {
+      image: "./images/image1.jpg",
+      text: "Um espaço seguro para compreender suas emoções, fortalecer sua saúde mental e seguir com mais confiança",
+      buttonText: "Vamos conversar",
+      buttonLink: "https://wa.me/5513991110945",
+    },
+  ];
 
-// Animação de entrada dos cards
-document.addEventListener("DOMContentLoaded", function () {
+  const heroImg = document.querySelector(".hero-image img");
+  const heroText = document.querySelector(".hero-content h1");
+  const heroBtn = document.querySelector(".hero-btn");
+
+  let currentSlide = 0;
+  let lastInteraction = Date.now();
+
+  function showSlide(index) {
+    const { image, text,buttonText, buttonLink } = slides[index];
+    heroImg.style.opacity = 0;
+    heroText.style.opacity = 0;
+
+    setTimeout(() => {
+      heroImg.src = image;
+      heroText.textContent = text;
+      heroBtn.textContent = buttonText;
+      heroBtn.onclick = () => {
+        window.location.href = buttonLink;
+      };
+
+      heroImg.style.opacity = 1;
+      heroText.style.opacity = 1;
+    }, 500);
+  }
+
+  showSlide(currentSlide);
+
+  setInterval(() => {
+    const now = Date.now();
+    if (now - lastInteraction > 3000) {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+  }, 5000);
+
+  ["mousemove", "scroll", "keydown", "click"].forEach((event) => {
+    window.addEventListener(event, () => {
+      lastInteraction = Date.now();
+    });
+  });
+
+  const modal = document.getElementById("info-modal");
+  const modalText = document.getElementById("modal-text");
+  const closeBtn = document.querySelector(".close-btn");
+
+  const contentMap = {
+  individual_exp: `
+    <p>
+      Indicada para adolescentes e adultos. A <strong>terapia individual</strong>
+      oferece suporte aos indivíduos durante períodos difíceis, ensinando-os a lidar
+      com <strong>questões emocionais, angústias, falta de motivação, baixa autoestima</strong>
+      e <strong>desilusões</strong>.
+    </p>
+    <br>
+    <p>
+      Seu objetivo central é proporcionar ao paciente uma nova forma de
+      <strong>sentir e pensar</strong>, capacitando-o a superar as adversidades da sua vida.
+    </p>
+    <br>
+    <p>
+    <a href="https://wa.me/5513991110945" aria-label="Agende sua consulta com a psicóloga Mariana Borralho" rel="noopener noreferrer">Entre em contato comigo</a>
+    </p>
+  `,
+  parental_exp: `
+    <p>
+      Orientação parental e familiar é um processo de <strong>apoio psicológico</strong>
+      que ajuda pais, mães e responsáveis a lidarem com os desafios da
+      <strong>criação dos filhos</strong>, promovendo relações mais saudáveis.
+    </p>
+    <br>
+    <p>
+      Também oferece suporte no cuidado com <strong>idosos</strong> e
+      <strong>pessoas com deficiência</strong>, fortalecendo vínculos e promovendo
+      o bem-estar de todos.
+    </p>
+    <br>
+    <p>
+    <a href="https://wa.me/5513991110945" aria-label="Agende sua consulta com a psicóloga Mariana Borralho" rel="noopener noreferrer">Veja como posso te ajudar</a>
+    </p>
+  `,
+  online_exp: `
+    <p>
+      O <strong>acompanhamento psicológico online</strong> é uma forma prática,
+      segura e eficaz de cuidar da <strong>saúde mental</strong>.
+    </p>
+    <br>
+    <p>
+      Realizado com <strong>ética, sigilo e profissionalismo</strong>, segue as
+      diretrizes do Conselho Federal de Psicologia.
+    </p>
+    <br>
+    <p>
+    <a href="https://wa.me/5513991110945" aria-label="Agende sua consulta com a psicóloga Mariana Borralho" rel="noopener noreferrer">Agende sua consulta</a>
+    </p>
+  `
+};
+
+
+  document.querySelectorAll(".info-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const key = btn.getAttribute("data-info");
+      modalText.innerHTML = contentMap[key] || "Texto não encontrado.";
+      modal.classList.remove("hidden");
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+
+  modal.addEventListener("click", e => {
+    if (e.target === modal) {
+      modal.classList.add("hidden");
+    }
+  });
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+  // Animação de entrada dos cards
   const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px",
@@ -151,92 +274,24 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", updateButtonPosition);
   window.addEventListener("resize", updateButtonPosition);
   updateButtonPosition();
-});
+  
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Funcionalidade do FAQ
+  const faqItems = document.querySelectorAll(".faq-item");
 
-document.addEventListener("DOMContentLoaded", function () {
-  const slides = [
-    {
-      image: "./images/image1.jpg",
-      text: "Ambiente acolhedor, seguro e personalizado para você",
-      buttonLink: "https://wa.me/5513991110945",
-    },
-    {
-      image: "./images/image2.jpg",
-      text: "Acompanhamento Psicológico Individual",
-      buttonLink: "https://wa.me/5513991110945",
-    },
-    {
-      image: "./images/image3.jpg",
-      text: "Orientação Parental e Familiar",
-      buttonLink: "https://wa.me/5513991110945",
-    },
-  ];
+  faqItems.forEach((item) => {
+    const question = item.querySelector(".faq-question");
 
-  const heroImg = document.querySelector(".hero-image img");
-  const heroText = document.querySelector(".hero-content h1");
-  const heroBtn = document.querySelector(".hero-btn");
+    question.addEventListener("click", function () {
+      faqItems.forEach((otherItem) => {
+        if (otherItem !== item) {
+          otherItem.classList.remove("active");
+        }
+      });
 
-  let currentSlide = 0;
-  let lastInteraction = Date.now();
-
-  function showSlide(index) {
-    const { image, text, buttonLink } = slides[index];
-    heroImg.style.opacity = 0;
-    heroText.style.opacity = 0;
-
-    setTimeout(() => {
-      heroImg.src = image;
-      heroText.textContent = text;
-      heroBtn.onclick = () => {
-        window.location.href = buttonLink;
-      };
-
-      heroImg.style.opacity = 1;
-      heroText.style.opacity = 1;
-    }, 500);
-  }
-
-  showSlide(currentSlide);
-
-  setInterval(() => {
-    const now = Date.now();
-    if (now - lastInteraction > 3000) {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }
-  }, 5000);
-
-  ["mousemove", "scroll", "keydown", "click"].forEach((event) => {
-    window.addEventListener(event, () => {
-      lastInteraction = Date.now();
+      item.classList.toggle("active");
     });
   });
-
-  const modal = document.getElementById("info-modal");
-  const modalText = document.getElementById("modal-text");
-  const closeBtn = document.querySelector(".close-btn");
-
-  const contentMap = {
-    individual_exp: "Indicada para adolescentes e adultos. A <strong>terapia individual</strong> oferece suporte aos indivíduos durante períodos difíceis, ensinando-os a lidar com <strong>questões emocionais, angústias, falta de motivação, baixa autoestima</strong> e <strong>desilusões</strong>. Seu objetivo central é proporcionar ao paciente uma nova forma de <strong>sentir e pensar</strong>, capacitando-o a superar as adversidades da sua vida.",
-    parental_exp: "Orientação parental e familiar é um processo de <strong>apoio psicológico</strong> que ajuda pais, mães e responsáveis a lidarem com os desafios da <strong>criação dos filhos</strong>, promovendo relações mais saudáveis e estratégias educativas mais eficazes no ambiente familiar. Também oferece suporte no cuidado com <strong>idosos</strong> e <strong>pessoas com deficiência</strong>, auxiliando no enfrentamento das demandas do dia a dia com mais equilíbrio, fortalecendo vínculos e promovendo o bem-estar de todos.",
-    online_exp: "O <strong>acompanhamento psicológico online</strong> é uma forma prática, segura e eficaz de cuidar da <strong>saúde mental</strong>. Ideal para quem busca flexibilidade de horários e conforto, essa modalidade permite que o paciente realize suas sessões de <strong>qualquer lugar</strong>, sem abrir mão da qualidade do atendimento. Realizado com <strong>ética, sigilo e profissionalismo</strong>, o processo terapêutico online segue as diretrizes do Conselho Federal de Psicologia e oferece um espaço acolhedor para autoconhecimento, escuta qualificada e desenvolvimento emocional."
-  };
-
-  document.querySelectorAll(".info-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const key = btn.getAttribute("data-info");
-      modalText.innerHTML = contentMap[key] || "Texto não encontrado.";
-      modal.classList.remove("hidden");
-    });
-  });
-
-  closeBtn.addEventListener("click", () => {
-    modal.classList.add("hidden");
-  });
-
-  modal.addEventListener("click", e => {
-    if (e.target === modal) {
-      modal.classList.add("hidden");
-    }
-  });
 });
+
